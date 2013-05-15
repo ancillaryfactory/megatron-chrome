@@ -12,7 +12,6 @@ function get_transformed_url(current_url){
 chrome.browserAction.onClicked.addListener(function (tab) {
     chrome.tabs.getCurrent(function(){
     	transformed_url = get_transformed_url(tab.url);
-    	
     	chrome.tabs.create({
         	url: transformed_url
     	});
@@ -22,9 +21,9 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
       chrome.browserAction.setBadgeText({text:""});
+      chrome.browserAction.setBadgeBackgroundColor({color:"#999"});
       // how to fetch tab url using activeInfo.tabid
       chrome.tabs.get(activeInfo.tabId, function(tab){
-        //alert(tab.url + "?tfrm=4");
         // get current url here
         transformed_url = get_transformed_url(tab.url);
         $.ajax({
@@ -34,7 +33,7 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
             var ct = xhr.getResponseHeader("content-type") || "";
             if (ct.indexOf('xml') > -1) {
               chrome.browserAction.setBadgeText({text:"+"});
-              console.log(tab.url);
+              // console.log(tab.url);
             }
           }
         }); 
