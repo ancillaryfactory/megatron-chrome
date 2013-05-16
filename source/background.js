@@ -22,8 +22,6 @@ function get_transformed_content_type(transformed_url){
         }); 
 }
 
-
-
 // open new tab when the button is clicked
 chrome.browserAction.onClicked.addListener(function (tab) {
     chrome.tabs.getCurrent(function(){
@@ -35,6 +33,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
     
 });
 
+// check on pageload for XML
 chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
   chrome.browserAction.setBadgeText({text:""});
   transformed_url = get_transformed_url(tab.url);
@@ -42,13 +41,11 @@ chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
 
 });
 
-
-
-// check the current tab for an XML response
+// check the most recently activated tab for an XML response
 // to the tfrm=4 querystring
 chrome.tabs.onActivated.addListener(function(activeInfo) {
       chrome.browserAction.setBadgeText({text:""});
-      chrome.browserAction.setBadgeBackgroundColor({color:"#999"});
+      chrome.browserAction.setBadgeBackgroundColor({color:"#3cad3c"});
       // how to fetch tab url using activeInfo.tabid
       chrome.tabs.get(activeInfo.tabId, function(tab){
         // get current url here
