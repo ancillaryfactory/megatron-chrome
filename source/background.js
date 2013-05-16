@@ -16,7 +16,7 @@ function get_transformed_content_type(transformed_url){
             var ct = xhr.getResponseHeader("content-type") || "";
             if (ct.indexOf('xml') > -1) {
               chrome.browserAction.setBadgeText({text:"+"});
-              // console.log(tab.url);
+              // chrome.contextMenus.create({title:"IGX site"},function(){alert("context")});
             }
           }
         }); 
