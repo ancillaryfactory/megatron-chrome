@@ -1,10 +1,12 @@
+var badgeColor = "#3cad3c";
+
 function get_transformed_url(current_url){
     if (current_url.indexOf('?') > -1){
-        var suffix = '&tfrm=4';
+        var prefix = '&';
     } else {
-        var suffix = '?tfrm=4';
+        var prefix = '?';
     }
-    new_url = current_url + suffix;
+    new_url = current_url + prefix + 'tfrm=4';
     return new_url;
 }
 
@@ -35,6 +37,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 
 // check on pageload for XML
 chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
+  chrome.browserAction.setBadgeBackgroundColor({color:badgeColor});
   chrome.browserAction.setBadgeText({text:""});
   transformed_url = get_transformed_url(tab.url);
   get_transformed_content_type(transformed_url);
@@ -45,7 +48,7 @@ chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
 // to the tfrm=4 querystring
 chrome.tabs.onActivated.addListener(function(activeInfo) {
       chrome.browserAction.setBadgeText({text:""});
-      chrome.browserAction.setBadgeBackgroundColor({color:"#3cad3c"});
+      chrome.browserAction.setBadgeBackgroundColor({color:badgeColor});
       // how to fetch tab url using activeInfo.tabid
       chrome.tabs.get(activeInfo.tabId, function(tab){
         // get current url here
