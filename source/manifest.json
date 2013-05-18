@@ -3,6 +3,7 @@
   "manifest_version": 2,
   "version": "2.0",
   "description": "Opens a new tab and adds tfrm=4 to the current URL",
+  "update_url": "https://raw.github.com/ancillaryfactory/megatron-chrome/master/source/update.xml",
   "browser_action": {
         "default_icon": "icon.png"
     },
