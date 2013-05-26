@@ -18,11 +18,20 @@ function get_transformed_content_type(transformed_url){
             var ct = xhr.getResponseHeader("content-type") || "";
             if (ct.indexOf('xml') > -1) {
               chrome.browserAction.setBadgeText({text:"+"});
-              // chrome.contextMenus.create({title:"IGX site"},function(){alert("context")});
-            }
-          }
+                $.ajax({
+                  type: "GET",
+                  url: transformed_url, 
+                  success: function(data){ 
+                    id = $(data).find('Center').attr('ID');
+                    chrome.contextMenus.removeAll();
+                    chrome.contextMenus.create({"title":"This page: " + id});
+                  }
+                }); 
+            } // end check for xml response
+          } // end success function
         }); 
 }
+
 
 // open new tab when the button is clicked
 chrome.browserAction.onClicked.addListener(function (tab) {
