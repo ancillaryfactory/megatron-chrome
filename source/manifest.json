@@ -1,7 +1,7 @@
 {
   "name": "Megatron",
   "manifest_version": 2,
-  "version": "3.0",
+  "version": "3.2",
   "description": "Opens a new tab and adds tfrm=4 to the current URL",
   "update_url": "http://viewsauce.org/megatron/updates.xml",
   "browser_action": {
@@ -13,7 +13,11 @@
             "jquery-2.0.0.min.js"
         ]
     },
-    "icons": { "16": "igx.ico" },
+    "icons": { 
+       "16": "igx.ico",
+       "48": "icon-48.png",
+      "128": "icon-128.png" 
+    },
     "permissions": [
         "tabs",
         "contextMenus",
