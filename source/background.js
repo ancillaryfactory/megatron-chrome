@@ -22,9 +22,12 @@ function get_transformed_content_type(transformed_url){
                   type: "GET",
                   url: transformed_url, 
                   success: function(data){ 
-                    id = $(data).find('Center').attr('ID');
+                    id = $(data).find('*').eq(0).attr('ID');
                     chrome.contextMenus.removeAll();
-                    chrome.contextMenus.create({"title":"This page: " + id});
+                    
+                    if (typeof id != 'undefined'){
+                      chrome.contextMenus.create({"title":id});
+                    }
                   }
                 }); 
             } // end check for xml response
