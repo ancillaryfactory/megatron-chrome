@@ -30,6 +30,8 @@ function get_transformed_content_type(transformed_url){
                     }
                   }
                 }); 
+            } else {
+              chrome.contextMenus.removeAll();
             } // end check for xml response
           } // end success function
         }); 
