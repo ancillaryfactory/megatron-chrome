@@ -17,6 +17,7 @@ function get_transformed_content_type(transformed_url){
           success: function(response, status, xhr){ 
             var ct = xhr.getResponseHeader("content-type") || "";
             if (ct.indexOf('xml') > -1) {
+              chrome.browserAction.enable();
               chrome.browserAction.setBadgeText({text:"+"});
                 $.ajax({
                   type: "GET",
@@ -27,10 +28,14 @@ function get_transformed_content_type(transformed_url){
                     
                     if (typeof id != 'undefined'){
                       chrome.contextMenus.create({"title":id});
+                      chrome.browserAction.setTitle({"title":id});
+                    } else {
+                      chrome.browserAction.setTitle({"title":""});
                     }
                   }
                 }); 
             } else {
+              chrome.browserAction.disable();
               chrome.contextMenus.removeAll();
             } // end check for xml response
           } // end success function
