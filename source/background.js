@@ -36,6 +36,7 @@ function get_transformed_content_type(transformed_url){
                 }); 
             } else {
               chrome.browserAction.disable();
+              chrome.browserAction.setTitle({"title":""});
               chrome.contextMenus.removeAll();
             } // end check for xml response
           } // end success function
